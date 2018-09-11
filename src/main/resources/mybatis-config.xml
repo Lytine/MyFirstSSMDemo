@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--mybatis的配置 -->
+<configuration>
+
+	<!-- <properties resource="db.properties"> </properties> -->
+
+	<!--为类型添加别名,用User简化在UserMapper.xml上面书写的org._233Latiao.Lytine.domain.User -->
+	<typeAliases>
+		<typeAlias type="org._233Latiao.Lytine.domain.User" alias="User" />
+	</typeAliases>
+
+
+	<!--环境？default对应环境的id，代表mybatis这次默认使用的数据库环境 -->
+	<environments default="default">
+		<environment id="default">
+			<!--配置事务管理器 直接配置JDBC(一定要大写)，代表使用JDBC事务 -->
+			<transactionManager type="JDBC" />
+			<!--数据库连接词，要求大写 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!--配置mybatis需要管理的mapper文件 -->
+	<mappers>
+		<mapper resource="org/_233Latiao/Lytine/many2many/StudentMapper.xml" />
+		<mapper resource="org/_233Latiao/Lytine/many2many/TeacherMapper.xml" />
+	</mappers>
+
+</configuration>
